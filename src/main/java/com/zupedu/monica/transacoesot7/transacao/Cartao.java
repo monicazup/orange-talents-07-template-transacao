@@ -1,5 +1,7 @@
 package com.zupedu.monica.transacoesot7.transacao;
 
+import com.zupedu.monica.transacoesot7.transacao.dto.CartaoResponse;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -15,9 +17,7 @@ public class Cartao {
         this.email = email;
     }
     @Deprecated
-    public Cartao(){
-
-    }
+    public Cartao(){ }
 
     public String getIdCartao() {
         return idCartao;
@@ -25,5 +25,9 @@ public class Cartao {
 
     public String getEmail() {
         return email;
+    }
+
+    public CartaoResponse paraResponse(){
+        return new CartaoResponse(this.idCartao, this.email);
     }
 }

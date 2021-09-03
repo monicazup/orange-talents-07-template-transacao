@@ -1,9 +1,10 @@
 package com.zupedu.monica.transacoesot7.transacao;
 
+import com.zupedu.monica.transacoesot7.transacao.dto.EstabelecimentoResponse;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Estabelecimento {
@@ -26,7 +27,22 @@ public class Estabelecimento {
         this.endereco = endereco;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
     @Deprecated
     public Estabelecimento() {
+    }
+    public EstabelecimentoResponse paraResponse() {
+        return new EstabelecimentoResponse(this.nome, this.cidade, this.endereco);
     }
 }

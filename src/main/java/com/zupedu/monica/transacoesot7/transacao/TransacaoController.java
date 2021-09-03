@@ -1,10 +1,7 @@
 package com.zupedu.monica.transacoesot7.transacao;
 
+import com.zupedu.monica.transacoesot7.transacao.dto.TransacaoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/transacoes")
@@ -21,15 +19,17 @@ public class TransacaoController {
     TransacaoRepository repository;
 
     @GetMapping("/{id}/listar")
-    public ResponseEntity<List<Transacao>> listarDezUltimas(@PathVariable("id") String idCartao) {
+    public ResponseEntity<List<TransacaoResponse>> listarDezUltimas(@PathVariable("id") String idCartao) {
 
-        List<Transacao> listaUltimasDezTransacoes = repository.findFirst10ByCartaoOrderByEfetivadaEmDesc(idCartao);
-
+        List<Transacao> listaUltimasDezTransacoes = repository.findFirst10ByCartaoIdOrderByEfetivadaEmDesc(idCartao);
+        List<TransacaoResponse> listaResponse = listaUltimasDezTransacoes
+                .stream()
+                .map(transacao -> transacao.paraResponse())
+                .collect(Collectors.toList());
 
         if(listaUltimasDezTransacoes.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.ok().body(listaUltimasDezTransacoes);
+        return ResponseEntity.ok().body(listaResponse);
     }
 }

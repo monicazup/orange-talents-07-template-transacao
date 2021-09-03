@@ -1,8 +1,7 @@
-package com.zupedu.monica.transacoesot7.kafka;
+package com.zupedu.monica.transacoesot7.transacao.dto;
 
 import com.zupedu.monica.transacoesot7.transacao.Estabelecimento;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotBlank;
 
 public class EstabelecimentoDto {

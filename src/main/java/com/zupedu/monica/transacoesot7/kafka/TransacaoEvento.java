@@ -1,11 +1,9 @@
 package com.zupedu.monica.transacoesot7.kafka;
 
-import com.zupedu.monica.transacoesot7.transacao.Cartao;
-import com.zupedu.monica.transacoesot7.transacao.Estabelecimento;
 import com.zupedu.monica.transacoesot7.transacao.Transacao;
+import com.zupedu.monica.transacoesot7.transacao.dto.CartaoDto;
+import com.zupedu.monica.transacoesot7.transacao.dto.EstabelecimentoDto;
 
-import javax.persistence.Embedded;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;

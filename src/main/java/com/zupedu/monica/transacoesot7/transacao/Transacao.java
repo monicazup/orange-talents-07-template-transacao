@@ -1,6 +1,6 @@
 package com.zupedu.monica.transacoesot7.transacao;
 
-import org.springframework.stereotype.Component;
+import com.zupedu.monica.transacoesot7.transacao.dto.TransacaoResponse;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -66,5 +66,9 @@ public class Transacao {
 
     @Deprecated
     public Transacao() {
+    }
+
+    public TransacaoResponse paraResponse() {
+        return new TransacaoResponse(this.id, this.valor, this.estabelecimento.paraResponse(), this.cartao.paraResponse(), this.efetivadaEm);
     }
 }

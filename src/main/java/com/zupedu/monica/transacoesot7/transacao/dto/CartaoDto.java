@@ -1,4 +1,4 @@
-package com.zupedu.monica.transacoesot7.kafka;
+package com.zupedu.monica.transacoesot7.transacao.dto;
 
 import com.zupedu.monica.transacoesot7.transacao.Cartao;
 
