@@ -20,16 +20,19 @@ public class TransacaoController {
 
     @GetMapping("/{id}/listar")
     public ResponseEntity<List<TransacaoResponse>> listarDezUltimas(@PathVariable("id") String idCartao) {
-
+        System.out.println("23");
         List<Transacao> listaUltimasDezTransacoes = repository.findFirst10ByCartaoIdOrderByEfetivadaEmDesc(idCartao);
+
+        if(listaUltimasDezTransacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         List<TransacaoResponse> listaResponse = listaUltimasDezTransacoes
                 .stream()
                 .map(transacao -> transacao.paraResponse())
                 .collect(Collectors.toList());
 
-        if(listaUltimasDezTransacoes.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok().body(listaResponse);
     }
 }
